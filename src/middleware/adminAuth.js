@@ -1,4 +1,3 @@
-
 const adminAuth = (req, res, next) => {
     const adminToken = process.env.ADMIN_API_TOKEN;
     const providedToken = req.headers["x-admin-token"];

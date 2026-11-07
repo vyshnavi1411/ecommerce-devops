@@ -1,4 +1,3 @@
-
 import express from "express";
 import pool from "../config/db.js";
 
@@ -37,7 +36,6 @@ router.get("/", async (req, res) => {
             count: result.rowCount,
             products: result.rows
         });
-
     } catch (error) {
         console.error("Product search failed:", error);
 
@@ -71,7 +69,6 @@ router.get("/:id", async (req, res) => {
         }
 
         res.status(200).json(result.rows[0]);
-
     } catch (error) {
         console.error("Product details failed:", error);
 

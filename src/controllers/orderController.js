@@ -1,4 +1,3 @@
-
 import pool from "../config/db.js";
 
 export const createOrder = async (req, res) => {
@@ -50,7 +49,8 @@ export const createOrder = async (req, res) => {
                 existing.quantity !== quantity
             ) {
                 return res.status(409).json({
-                    message: "Idempotency key already used with a different request"
+                    message:
+                        "Idempotency key already used with a different request"
                 });
             }
 
@@ -126,7 +126,6 @@ export const createOrder = async (req, res) => {
             message: "Order created successfully",
             order
         });
-
     } catch (error) {
         // Roll back if transaction is still active
         if (client && transactionStarted) {
@@ -153,7 +152,8 @@ export const createOrder = async (req, res) => {
                         order.quantity !== quantity
                     ) {
                         return res.status(409).json({
-                            message: "Idempotency key already used with a different request"
+                            message:
+                                "Idempotency key already used with a different request"
                         });
                     }
 
@@ -172,7 +172,6 @@ export const createOrder = async (req, res) => {
         return res.status(500).json({
             message: "Failed to create order"
         });
-
     } finally {
         if (client) {
             client.release();

@@ -7,7 +7,6 @@ import productRoutes from "./routes/productRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 
-
 const app = express();
 
 app.use(helmet());
@@ -33,7 +32,7 @@ app.get("/ready", async (req, res) => {
             status: "ready",
             database: "connected"
         });
-    } catch (error) {
+    } catch {
         res.status(503).json({
             status: "not ready",
             database: "disconnected"

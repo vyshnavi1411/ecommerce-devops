@@ -1,4 +1,3 @@
-
 import request from "supertest";
 import { randomUUID } from "crypto";
 import app from "../src/app.js";
@@ -119,10 +118,9 @@ describe("Order API Tests", () => {
                 [[orderKey]]
             );
 
-            await pool.query(
-                `DELETE FROM products WHERE id = ANY($1::int[])`,
-                [productIds]
-            );
+            await pool.query(`DELETE FROM products WHERE id = ANY($1::int[])`, [
+                productIds
+            ]);
         }
 
         await pool.end();

@@ -1,4 +1,3 @@
-
 import request from "supertest";
 import { randomUUID } from "crypto";
 import app from "../src/app.js";
@@ -11,14 +10,12 @@ describe("Admin API Tests", () => {
     let productId;
 
     test("Admin should not create product without authentication", async () => {
-        const response = await request(app)
-            .post("/api/admin/products")
-            .send({
-                sku,
-                name: "Test Mouse",
-                price: 1200,
-                stock: 10
-            });
+        const response = await request(app).post("/api/admin/products").send({
+            sku,
+            name: "Test Mouse",
+            price: 1200,
+            stock: 10
+        });
 
         expect(response.statusCode).toBe(401);
     });
@@ -76,10 +73,7 @@ describe("Admin API Tests", () => {
                 [productId]
             );
 
-            await pool.query(
-                "DELETE FROM products WHERE id = $1",
-                [productId]
-            );
+            await pool.query("DELETE FROM products WHERE id = $1", [productId]);
         }
 
         await pool.end();

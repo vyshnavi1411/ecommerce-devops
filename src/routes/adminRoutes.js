@@ -1,4 +1,3 @@
-
 import express from "express";
 import pool from "../config/db.js";
 import adminAuth from "../middleware/adminAuth.js";
@@ -58,17 +57,16 @@ router.post("/products", async (req, res) => {
             message: "Product created successfully",
             product
         });
-
     } catch (error) {
         await client.query("ROLLBACK");
         console.error(error);
 
         res.status(error.code === "23505" ? 409 : 500).json({
-            message: error.code === "23505"
-                ? "Product SKU already exists"
-                : "Failed to create product"
+            message:
+                error.code === "23505"
+                    ? "Product SKU already exists"
+                    : "Failed to create product"
         });
-
     } finally {
         client.release();
     }
@@ -131,7 +129,6 @@ router.patch("/products/:id/stock", async (req, res) => {
             message: "Stock updated successfully",
             product
         });
-
     } catch (error) {
         await client.query("ROLLBACK");
         console.error(error);
@@ -139,7 +136,6 @@ router.patch("/products/:id/stock", async (req, res) => {
         res.status(500).json({
             message: "Failed to update stock"
         });
-
     } finally {
         client.release();
     }

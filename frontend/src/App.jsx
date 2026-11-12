@@ -11,6 +11,18 @@ import {
 } from "lucide-react";
 import "./App.css";
 
+function createIdempotencyKey() {
+    if (window.crypto?.getRandomValues) {
+        const bytes = new Uint8Array(16);
+        window.crypto.getRandomValues(bytes);
+
+        return Array.from(bytes, (byte) =>
+            byte.toString(16).padStart(2, "0")
+        ).join("");
+    }
+
+    return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
 function App() {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState("");
@@ -72,7 +84,7 @@ function App() {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Idempotency-Key": crypto.randomUUID()
+                    "Idempotency-Key": createIdempotencyKey()
                 },
                 body: JSON.stringify({
                     productId: product.id,

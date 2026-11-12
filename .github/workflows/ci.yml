@@ -47,6 +47,8 @@ jobs:
 
             - name: Install backend dependencies
               run: npm ci
+            - name: Install frontend dependencies
+              run: npm ci --prefix frontend
 
             - name: Check formatting
               run: npm run format:check

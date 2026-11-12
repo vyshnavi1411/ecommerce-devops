@@ -41,4 +41,5 @@ INSERT INTO products (sku, name, description, price, stock)
 VALUES
 ('LAP001', 'Laptop', 'High performance laptop', 55000, 10),
 ('MOB001', 'Smartphone', 'Android smartphone', 20000, 20),
-('HEAD001', 'Headphones', 'Wireless headphones', 2500, 30);
+('HEAD001', 'Headphones', 'Wireless headphones', 2500, 30),
+('MOUSE001', 'Wireless Mouse', 'Wireless optical mouse', 1200, 25);

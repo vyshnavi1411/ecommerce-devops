@@ -96,5 +96,3 @@ The implementation includes validation of:
 **Vyshnavi Kusukuntla**
 
 B.Tech – Computer Science and Engineering
-
-[GitHub](YOUR_GITHUB_PROFILE_URL) | [LinkedIn](YOUR_LINKEDIN_PROFILE_URL)

@@ -6,38 +6,41 @@ The following reflects the deployment configuration recorded during
 project work. Re-check the live Compose file and EC2 security group
 before submission.
 
-  ------------------------------------------------------------------------
-  Component          Host binding / port Purpose          Public exposure
-  ---------------- --------------------- ---------------- ----------------
-  Host Nginx                       `:80` Public HTTP      Yes, if allowed
-                                         reverse proxy    by the EC2
-                                                          security group
+---
 
-  Frontend              `127.0.0.1:8080` Storefront       No direct public
-  container                              served by Nginx  exposure
-                                         container        
+Component Host binding / port Purpose Public exposure
 
-  API container         `127.0.0.1:3000` Express API      No direct public
-                                                          exposure
+---
 
-  PostgreSQL            Compose internal Application      No
-                      network; container database         
-                                  `5432`                  
+Host Nginx `:80` Public HTTP Yes, if allowed
+reverse proxy by the EC2
+security group
 
-  Prometheus            `127.0.0.1:9090` Metrics and      No
-                                         targets          
+Frontend `127.0.0.1:8080` Storefront No direct public
+container served by Nginx exposure
+container
 
-  Grafana               `127.0.0.1:3001` Monitoring       No
-                                         dashboards       
+API container `127.0.0.1:3000` Express API No direct public
+exposure
 
-  cAdvisor              `127.0.0.1:8081` Container        No
-                                         metrics          
+PostgreSQL Compose internal Application No
+network; container database  
+`5432`
 
-  Blackbox              `127.0.0.1:9115` Endpoint probing No
-  Exporter                                                
+Prometheus `127.0.0.1:9090` Metrics and No
+targets
 
-  Node Exporter         `127.0.0.1:9100` Host metrics     No
-  ------------------------------------------------------------------------
+Grafana `127.0.0.1:3001` Monitoring No
+dashboards
+
+cAdvisor `127.0.0.1:8081` Container No
+metrics
+
+Blackbox `127.0.0.1:9115` Endpoint probing No
+Exporter
+
+Node Exporter `127.0.0.1:9100` Host metrics No
+------------------------------------------------------------------------
 
 Only the required public web entry point should be allowed from the
 internet. Keep database and monitoring ports restricted.
@@ -58,10 +61,10 @@ access where configured.
 
 ## Deployment Notes
 
--   Local frontend URL: `http://localhost:8080`
--   Local API URL: `http://localhost:3000`
--   API health: `/health`
--   API readiness: `/ready`
--   EC2 host Nginx currently uses HTTP on port 80.
--   HTTPS is not claimed here; document and verify TLS configuration
-    separately if completed.
+- Local frontend URL: `http://localhost:8080`
+- Local API URL: `http://localhost:3000`
+- API health: `/health`
+- API readiness: `/ready`
+- EC2 host Nginx currently uses HTTP on port 80.
+- HTTPS is not claimed here; document and verify TLS configuration
+  separately if completed.

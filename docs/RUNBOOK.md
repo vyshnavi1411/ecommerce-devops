@@ -15,7 +15,7 @@ is running and reachable through Systems Manager.
 
 On the EC2 instance:
 
-``` bash
+```bash
 cd /home/ubuntu/ecommerce-deployment
 docker compose ps
 ```
@@ -28,20 +28,20 @@ their health endpoints.
 
 Restart the application services:
 
-``` bash
+```bash
 cd /home/ubuntu/ecommerce-deployment
 docker compose restart api frontend
 ```
 
 Restart the complete Compose stack only when necessary:
 
-``` bash
+```bash
 docker compose restart
 ```
 
 ## 3. Check Status and Health
 
-``` bash
+```bash
 docker compose ps
 curl -fsS http://localhost:3000/health
 curl -fsS http://localhost:3000/ready
@@ -51,8 +51,8 @@ curl -I http://localhost
 
 Expected API health response:
 
-``` json
-{"status":"healthy","service":"ecommerce-api"}
+```json
+{ "status": "healthy", "service": "ecommerce-api" }
 ```
 
 The readiness endpoint should report a connected database when
@@ -60,7 +60,7 @@ PostgreSQL is available.
 
 ## 4. Inspect Logs
 
-``` bash
+```bash
 docker compose logs --tail=100 api
 docker compose logs --tail=100 frontend
 docker compose logs --tail=100 db
@@ -69,7 +69,7 @@ docker compose logs -f api
 
 For host Nginx:
 
-``` bash
+```bash
 sudo systemctl status nginx
 sudo nginx -t
 sudo tail -n 100 /var/log/nginx/error.log
@@ -88,7 +88,7 @@ sudo tail -n 100 /var/log/nginx/access.log
 
 Useful commands:
 
-``` bash
+```bash
 docker compose ps
 docker compose logs --tail=100 api frontend db
 docker compose restart api
@@ -101,7 +101,7 @@ assessment demo.
 
 The configured backup script is located at:
 
-``` bash
+```bash
 /home/ubuntu/ecommerce-backups/backup.sh
 ```
 
@@ -110,7 +110,7 @@ backup script uploads backups to the configured private S3 bucket.
 
 Check the cron entry and backup files:
 
-``` bash
+```bash
 crontab -l
 ls -lh /home/ubuntu/ecommerce-backups/
 ```

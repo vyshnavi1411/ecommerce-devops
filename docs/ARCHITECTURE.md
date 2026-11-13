@@ -10,7 +10,7 @@ API service.
 
 ## Component Diagram
 
-``` mermaid
+```mermaid
 flowchart TB
     U[User / Browser] --> N[Host Nginx :80]
     N --> F[Frontend container :8080]
@@ -72,20 +72,20 @@ flowchart TB
 
 ## Data Protection and Operations
 
--   PostgreSQL data is stored in a persistent Docker volume.
--   The backup script creates database backups and uploads them to the
-    configured private S3 bucket.
--   Prometheus collects monitoring data and Grafana provides dashboards.
--   See [RUNBOOK.md](RUNBOOK.md) for operational commands and recovery
-    steps.
+- PostgreSQL data is stored in a persistent Docker volume.
+- The backup script creates database backups and uploads them to the
+  configured private S3 bucket.
+- Prometheus collects monitoring data and Grafana provides dashboards.
+- See [RUNBOOK.md](RUNBOOK.md) for operational commands and recovery
+  steps.
 
 ## Security Notes
 
--   Keep `.env` and deployment secrets out of Git.
--   Keep database and internal monitoring ports private; expose only the
-    required public entry point.
--   Use an EC2 IAM role with only the permissions required by the
-    deployment and backup tasks.
--   The documented deployment currently uses HTTP at the host Nginx
-    entry point. HTTPS must be separately configured and tested before
-    claiming TLS support.
+- Keep `.env` and deployment secrets out of Git.
+- Keep database and internal monitoring ports private; expose only the
+  required public entry point.
+- Use an EC2 IAM role with only the permissions required by the
+  deployment and backup tasks.
+- The documented deployment currently uses HTTP at the host Nginx
+  entry point. HTTPS must be separately configured and tested before
+  claiming TLS support.

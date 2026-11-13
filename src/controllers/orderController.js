@@ -178,3 +178,40 @@ export const createOrder = async (req, res) => {
         }
     }
 };
+export const getOrderById = async (req, res) => {
+    const orderId = req.params.id;
+    if (
+        !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(
+            orderId
+        )
+    ) {
+        return res.status(400).json({
+            message: "Valid order ID is required"
+        });
+    }
+
+    try {
+        const result = await pool.query(
+            `SELECT id, product_id, quantity, status, total_amount, created_at
+             FROM orders
+             WHERE id = $1`,
+            [orderId]
+        );
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({
+                message: "Order not found"
+            });
+        }
+
+        return res.status(200).json({
+            order: result.rows[0]
+        });
+    } catch (error) {
+        console.error("Order lookup failed:", error);
+
+        return res.status(500).json({
+            message: "Failed to retrieve order"
+        });
+    }
+};

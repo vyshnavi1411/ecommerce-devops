@@ -45,7 +45,7 @@ The objective is to build and deploy a small Product and Order API using product
 **1. Clone the repository**
 
 ```bash
-git clone YOUR_REPOSITORY_URL
+git clone https://github.com/vyshnavi1411/ecommerce-devops.git
 cd ecommerce-devops
 ```
 
